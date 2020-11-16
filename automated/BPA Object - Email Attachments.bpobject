@@ -1,0 +1,550 @@
+﻿<process name="Email Attachments" version="1.0" bpversion="6.9.0.26970" narrative="Sending the attachment in mail." byrefcollection="true" type="object" runmode="Exclusive" preferredid="beb23084-3714-473b-8cf6-fa99f0e61a62">
+  <appdef>
+    <element name="Application Root">
+      <id>e90ba4eb-552a-43ec-b1f8-af620d6b3098</id>
+      <type>Application</type>
+      <basetype>Application</basetype>
+      <datatype>unknown</datatype>
+      <diagnose>False</diagnose>
+    </element>
+  </appdef>
+  <view>
+    <camerax>0</camerax>
+    <cameray>-13</cameray>
+    <zoom version="2">1.25</zoom>
+  </view>
+  <preconditions />
+  <endpoint narrative="" />
+  <subsheet subsheetid="02adf304-f100-4b50-95c5-247ec089285a" type="CleanUp" published="True">
+    <name>Clean Up</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="452f0aa6-4f04-42d2-902b-ad0d623ba6e1" type="Normal" published="False">
+    <name>Action 1</name>
+    <view>
+      <camerax>74</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <subsheet subsheetid="5a55a547-8e3b-4cac-9652-0c93cd6a19d3" type="Normal" published="False">
+    <name>Email Sending Bot</name>
+    <view>
+      <camerax>0</camerax>
+      <cameray>0</cameray>
+      <zoom version="2">1.25</zoom>
+    </view>
+  </subsheet>
+  <stage stageid="8ce067e8-41bb-4ffe-95f4-591ca46ad42e" name="Start" type="Start">
+    <loginhibit />
+    <display x="-75" y="-180" />
+    <onsuccess>c9490254-2314-45d0-82f8-d8fcc2170294</onsuccess>
+  </stage>
+  <stage stageid="92952465-d7bf-4d21-8b1d-96e46236e28b" name="End" type="End">
+    <loginhibit />
+    <display x="105" y="45" />
+  </stage>
+  <stage stageid="38428cfc-8d28-4664-9ad7-b35008c09430" name="Stage1" type="ProcessInfo">
+    <display x="-195" y="-105" w="150" h="90" />
+    <references>
+      <reference>System.dll</reference>
+      <reference>System.Data.dll</reference>
+      <reference>System.Xml.dll</reference>
+      <reference>System.Drawing.dll</reference>
+    </references>
+    <imports>
+      <import>System</import>
+      <import>System.Drawing</import>
+      <import>System.Data</import>
+    </imports>
+    <language>visualbasic</language>
+    <globalcode><![CDATA[]]></globalcode>
+    <code><![CDATA[]]></code>
+  </stage>
+  <stage stageid="539e6d60-9f4a-492a-aff4-8261a255add7" name="Clean Up" type="SubSheetInfo">
+    <subsheetid>02adf304-f100-4b50-95c5-247ec089285a</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="7b64e3d5-9dae-4edd-84d7-15f86e144f28" name="Start" type="Start">
+    <subsheetid>02adf304-f100-4b50-95c5-247ec089285a</subsheetid>
+    <loginhibit />
+    <display x="15" y="-105" />
+    <onsuccess>f2083987-50af-4f4b-9b05-c6d1479ae0de</onsuccess>
+  </stage>
+  <stage stageid="f2083987-50af-4f4b-9b05-c6d1479ae0de" name="End" type="End">
+    <subsheetid>02adf304-f100-4b50-95c5-247ec089285a</subsheetid>
+    <loginhibit />
+    <display x="15" y="90" />
+  </stage>
+  <stage stageid="55f4e0a3-780f-4d89-9f4c-975d609f97d1" name="Action 1" type="SubSheetInfo">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="237dbd2c-60b6-4cf9-a3e2-dddff6a87103" name="Note1" type="Note">
+    <subsheetid>02adf304-f100-4b50-95c5-247ec089285a</subsheetid>
+    <narrative>Clean Up Page
+
+This is an optional page where you might choose to perform some finalisation (or "cleanup") tasks as your business object is closed down.
+
+The cleanup action will be called automatically immediately after closing your business object at the end of a business process.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than before the disposal of the business object.</narrative>
+    <display x="-180" y="60" w="180" h="230" />
+  </stage>
+  <stage stageid="5c9768e5-6b7f-4296-bd41-5a7faa026b79" name="Note2" type="Note">
+    <narrative>Initialise Page
+
+This is an optional page where you might choose to perform some initialisation tasks after your business object is loaded.
+
+The initialise action will be called automatically immediately after loading your business object.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than after the creation of the object.</narrative>
+    <display x="-180" y="60" w="180" h="230" />
+  </stage>
+  <stage stageid="c9490254-2314-45d0-82f8-d8fcc2170294" name="MS Excel VBO::Create Instance" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="15" y="-180" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="True" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>3e3a3dd4-95a9-4db0-8423-fd72169f7698</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="3e3a3dd4-95a9-4db0-8423-fd72169f7698" name="MS Excel VBO::Open Workbook" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="105" y="-180" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="&quot;C:\Users\Shreya\Desktop\salary.xlsx&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>8eb5bc8c-dff6-4422-a3ba-255d36704019</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="226526d3-ed48-485a-a5ad-80307dfaa554" name="handle" type="Data">
+    <display x="315" y="-195" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="8eb5bc8c-dff6-4422-a3ba-255d36704019" name="Read Data" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="105" y="-120" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the worksheet which should be retrieved resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which contains the sheet required. The default empty text indicates the currently active workbook on the specified instance." expr="[Workbook Name]" />
+      <input type="text" name="Worksheet Name" friendlyname="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="&quot;Sheet1&quot;" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" friendlyname="Data" narrative="The collection containing the data from the specified worksheet - the column IDs will be gleaned from the first row on the sheet being retrieved." stage="Data" />
+    </outputs>
+    <onsuccess>755c7132-f6a2-4cba-b668-e99cf4bd5344</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet As Collection" />
+  </stage>
+  <stage stageid="f2f0a508-31fa-49f4-bf76-7ef1790af9fc" name="Workbook Name" type="Data">
+    <display x="315" y="-150" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="c4257366-3511-4d93-9152-35c5f56af54f" name="Collection" type="Collection">
+    <loginhibit />
+    <display x="315" y="-105" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Emp_Name" type="text" />
+      <field name="Emp_EmailID" type="text" />
+      <field name="Emp_SalarySlip" type="text" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="Emp_Name" type="text" value="" />
+        <field name="Emp_EmailID" type="text" value="" />
+        <field name="Emp_SalarySlip" type="text" value="" />
+      </row>
+    </initialvalue>
+  </stage>
+  <stage stageid="755c7132-f6a2-4cba-b668-e99cf4bd5344" name="Configure Email" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="105" y="-75" />
+    <inputs>
+      <input type="text" name="Username" friendlyname="Username" narrative="The POP3 and SMTP Username" expr="&quot;metallurgy16@gmail.com&quot;" />
+      <input type="password" name="Password" friendlyname="Password" narrative="The POP3 and SMTP Password" expr="&quot;nitraipur16&quot;" />
+      <input type="text" name="POP3 Server" friendlyname="POP3 Server" narrative="The POP3 Server address e.g. pop.domain.com" expr="&quot;pop.gmail.com&quot;" />
+      <input type="text" name="SMTP Server" friendlyname="SMTP Server" narrative="The SMTP Server address e.g. smtp.domain.com" expr="&quot;smtp.gmail.com&quot;" />
+      <input type="number" name="POP3 Port" friendlyname="POP3 Port" narrative="The POP3 Port, e.g. 110 or 995" expr="995" />
+      <input type="number" name="SMTP Port" friendlyname="SMTP Port" narrative="The SMTP Port, e.g 25 or 465" expr="587" />
+      <input type="flag" name="POP3 UseSSL" friendlyname="POP3 UseSSL" narrative="Whether to use SSL for POP3" expr="True" />
+      <input type="flag" name="SMTP UseSSL" friendlyname="SMTP UseSSL" narrative="Whether to use SSL for SMTP" expr="True" />
+    </inputs>
+    <onsuccess>8838791d-1c8f-4504-a3d8-74f1cfcd3ce7</onsuccess>
+    <resource object="Email - POP3/SMTP" action="Configure" />
+  </stage>
+  <stage stageid="64674839-154f-4313-9186-0114d6026ad2" name="Sending the mail" type="Action">
+    <loginhibit onsuccess="true" />
+    <display x="195" y="-15" />
+    <inputs>
+      <input type="text" name="From" friendlyname="From" narrative="The email address of the sender." expr="&quot;metallurgy16@gmail.com&quot;" />
+      <input type="text" name="To" friendlyname="To" narrative="The email address of the recipient. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="&quot;shanu.shreya270@gmail.com&quot;" />
+      <input type="text" name="Subject" friendlyname="Subject" narrative="The subject of the email." expr="&quot;Email Demo RPA&quot;" />
+      <input type="text" name="Body" friendlyname="Body" narrative="The body of the email." expr="&quot;Salary slip of oct&quot;" />
+      <input type="collection" name="Attachments" friendlyname="Attachments" narrative="A Collection containing a list of files to add to the email as attachments." expr="[Attachments]" />
+      <input type="flag" name="BodyIsHTML" friendlyname="BodyIsHTML" narrative="Indicates if the body should be sent as HTML" expr="True" />
+    </inputs>
+    <onsuccess>cc5f3c46-aa17-487c-9617-b4fd2814db0e</onsuccess>
+    <resource object="Email - POP3/SMTP" action="Send Message" />
+  </stage>
+  <stage stageid="46cac130-bbd1-4872-9bf3-adf8e71feb68" name="Attachments" type="Collection">
+    <loginhibit />
+    <display x="315" y="-60" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Path" type="text" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="Path" type="text" value="" />
+      </row>
+    </initialvalue>
+  </stage>
+  <stage stageid="8838791d-1c8f-4504-a3d8-74f1cfcd3ce7" name="Loop Start1" type="LoopStart">
+    <loginhibit />
+    <display x="195" y="-75" />
+    <onsuccess>ec970129-0e39-4440-b8fe-747517e0a78c</onsuccess>
+    <groupid>d0537855-49e8-4802-8d8d-b4c55fef67ae</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Collection</loopdata>
+  </stage>
+  <stage stageid="cc5f3c46-aa17-487c-9617-b4fd2814db0e" name="Loop End1" type="LoopEnd">
+    <loginhibit />
+    <display x="195" y="45" />
+    <onsuccess>92952465-d7bf-4d21-8b1d-96e46236e28b</onsuccess>
+    <groupid>d0537855-49e8-4802-8d8d-b4c55fef67ae</groupid>
+  </stage>
+  <stage stageid="ec970129-0e39-4440-b8fe-747517e0a78c" name="Calc1" type="Calculation">
+    <loginhibit />
+    <display x="105" y="-15" />
+    <onsuccess>64674839-154f-4313-9186-0114d6026ad2</onsuccess>
+    <calculation expression="[Collection.Emp_SalarySlip]" stage="Attachments.Path" />
+  </stage>
+  <stage stageid="c2b6d7b9-7e71-4cd5-80bc-70d5f9128fd8" name="Start" type="Start">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="-60" y="-150" />
+    <onsuccess>75809746-5962-4cf4-afc1-958771820cf2</onsuccess>
+  </stage>
+  <stage stageid="652d094f-ff49-4533-bf55-c2f99793831c" name="End" type="End">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="120" y="75" />
+  </stage>
+  <stage stageid="c2bb5443-fc2d-41b1-a5c9-f5de691b0a18" name="Note3" type="Note">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <narrative>Initialise Page
+
+This is an optional page where you might choose to perform some initialisation tasks after your business object is loaded.
+
+The initialise action will be called automatically immediately after loading your business object.
+
+You will not be able to call this action from a business process, nor will it be called at any other time than after the creation of the object.</narrative>
+    <display x="-165" y="90" w="180" h="230" />
+  </stage>
+  <stage stageid="75809746-5962-4cf4-afc1-958771820cf2" name="MS Excel VBO::Create Instance" type="Action">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="30" y="-150" />
+    <inputs>
+      <input type="flag" name="Enable Events" friendlyname="Enable Events" narrative="Flag to indicate that events should be enabled / disabled on the attached instance - defaulted to True" expr="" />
+    </inputs>
+    <outputs>
+      <output type="number" name="handle" friendlyname="handle" narrative="An integer which can be used to identify the created instance in subsequent actions" stage="handle" />
+    </outputs>
+    <onsuccess>d81f1ae8-b214-4b7d-983e-f1498323ae2d</onsuccess>
+    <resource object="MS Excel VBO" action="Create Instance" />
+  </stage>
+  <stage stageid="d81f1ae8-b214-4b7d-983e-f1498323ae2d" name="MS Excel VBO::Open Workbook" type="Action">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="120" y="-150" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the required workbook should be opened. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="File name" friendlyname="File name" narrative="The path and name of the file which should be opened." expr="&quot;C:\Users\Shreya\Desktop\salary.xlsx&quot;" />
+    </inputs>
+    <outputs>
+      <output type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name used by Excel to identify the workbook - usually this is the file name (without the path)." stage="Workbook Name" />
+    </outputs>
+    <onsuccess>4ff55ef7-ab2d-4a89-882b-7fc4b6ffc941</onsuccess>
+    <resource object="MS Excel VBO" action="Open Workbook" />
+  </stage>
+  <stage stageid="10f11c8e-4133-4418-a876-daca0400164a" name="handle" type="Data">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <display x="330" y="-165" />
+    <datatype>number</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="4ff55ef7-ab2d-4a89-882b-7fc4b6ffc941" name="Read Data" type="Action">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="120" y="-90" />
+    <inputs>
+      <input type="number" name="handle" friendlyname="handle" narrative="The integer handle identifying the instance on which the worksheet which should be retrieved resides. The default of zero indicates the currently active instance." expr="[handle]" />
+      <input type="text" name="Workbook Name" friendlyname="Workbook Name" narrative="The name of the workbook which contains the sheet required. The default empty text indicates the currently active workbook on the specified instance." expr="[Workbook Name]" />
+      <input type="text" name="Worksheet Name" friendlyname="Worksheet Name" narrative="The name of the worksheet within the specified workbook which should be written to a collection. The default empty text indicates the currently active worksheet within the specified workbook." expr="&quot;Sheet1&quot;" />
+    </inputs>
+    <outputs>
+      <output type="collection" name="Data" friendlyname="Data" narrative="The collection containing the data from the specified worksheet - the column IDs will be gleaned from the first row on the sheet being retrieved." stage="Data" />
+    </outputs>
+    <onsuccess>8c1eb221-e53a-407a-b026-d7bae709e40c</onsuccess>
+    <resource object="MS Excel VBO" action="Get Worksheet As Collection" />
+  </stage>
+  <stage stageid="6eed5189-0c2f-40cd-9595-6918b39c5c28" name="Workbook Name" type="Data">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <display x="330" y="-120" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="acfcf62f-49c2-4f29-8725-3cf0048731d3" name="Collection" type="Collection">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="330" y="-75" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Emp_Name" type="text" />
+      <field name="Emp_EmailID" type="text" />
+      <field name="Emp_SalarySlip" type="text" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="Emp_Name" type="text" value="" />
+        <field name="Emp_EmailID" type="text" value="" />
+        <field name="Emp_SalarySlip" type="text" value="" />
+      </row>
+    </initialvalue>
+  </stage>
+  <stage stageid="8c1eb221-e53a-407a-b026-d7bae709e40c" name="Configure Email" type="Action">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="120" y="-45" />
+    <inputs>
+      <input type="text" name="Username" friendlyname="Username" narrative="The POP3 and SMTP Username" expr="&quot;metallurgy16@gmail.com&quot;" />
+      <input type="password" name="Password" friendlyname="Password" narrative="The POP3 and SMTP Password" expr="&quot;nitraipur16&quot;" />
+      <input type="text" name="POP3 Server" friendlyname="POP3 Server" narrative="The POP3 Server address e.g. pop.domain.com" expr="&quot;pop.gmail.com&quot;" />
+      <input type="text" name="SMTP Server" friendlyname="SMTP Server" narrative="The SMTP Server address e.g. smtp.domain.com" expr="&quot;smtp.gmail.com&quot;" />
+      <input type="number" name="POP3 Port" friendlyname="POP3 Port" narrative="The POP3 Port, e.g. 110 or 995" expr="995" />
+      <input type="number" name="SMTP Port" friendlyname="SMTP Port" narrative="The SMTP Port, e.g 25 or 465" expr="587" />
+      <input type="flag" name="POP3 UseSSL" friendlyname="POP3 UseSSL" narrative="Whether to use SSL for POP3" expr="True" />
+      <input type="flag" name="SMTP UseSSL" friendlyname="SMTP UseSSL" narrative="Whether to use SSL for SMTP" expr="True" />
+    </inputs>
+    <onsuccess>ef54a93e-5934-4386-846a-d5ccee68d576</onsuccess>
+    <resource object="Email - POP3/SMTP" action="Configure" />
+  </stage>
+  <stage stageid="e9b3568f-3818-4200-bcd9-9261dce0a4c4" name="Sending the mail" type="Action">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit onsuccess="true" />
+    <display x="210" y="15" />
+    <inputs>
+      <input type="text" name="From" friendlyname="From" narrative="The email address of the sender." expr="&quot;metallurgy16@gmail.com&quot;" />
+      <input type="text" name="To" friendlyname="To" narrative="The email address of the recipient. To address multiple recipients use the format &quot;john.smith@example.com, henry.jones@example.com&quot; OR &quot;John Smith &lt;john.smith@example.com&gt;, Henry Jones &lt;henry.jones@example.com&gt;&quot;." expr="&quot;shanu.shreya270@gmail.com&quot;" />
+      <input type="text" name="Subject" friendlyname="Subject" narrative="The subject of the email." expr="&quot;Email Demo RPA&quot;" />
+      <input type="text" name="Body" friendlyname="Body" narrative="The body of the email." expr="&quot;Salary slip of oct&quot;" />
+      <input type="collection" name="Attachments" friendlyname="Attachments" narrative="A Collection containing a list of files to add to the email as attachments." expr="[Attachments]" />
+      <input type="flag" name="BodyIsHTML" friendlyname="BodyIsHTML" narrative="Indicates if the body should be sent as HTML" expr="True" />
+    </inputs>
+    <onsuccess>1dc350c0-4fb4-4749-bef5-a54ff11ddd83</onsuccess>
+    <resource object="Email - POP3/SMTP" action="Send Message" />
+  </stage>
+  <stage stageid="d3c78267-e671-47bf-a2b1-09e7ed47eb47" name="Attachments" type="Collection">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="330" y="-30" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Path" type="text" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="Path" type="text" value="" />
+      </row>
+    </initialvalue>
+  </stage>
+  <stage stageid="ef54a93e-5934-4386-846a-d5ccee68d576" name="Loop Start1" type="LoopStart">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="210" y="-45" />
+    <onsuccess>f057af8d-10bc-4926-b541-00473b80e26f</onsuccess>
+    <groupid>17ac3262-62e4-4565-b8d9-41a9550e6541</groupid>
+    <looptype>ForEach</looptype>
+    <loopdata>Data</loopdata>
+  </stage>
+  <stage stageid="1dc350c0-4fb4-4749-bef5-a54ff11ddd83" name="Loop End1" type="LoopEnd">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="210" y="75" />
+    <onsuccess>652d094f-ff49-4533-bf55-c2f99793831c</onsuccess>
+    <groupid>17ac3262-62e4-4565-b8d9-41a9550e6541</groupid>
+  </stage>
+  <stage stageid="f057af8d-10bc-4926-b541-00473b80e26f" name="Calc1" type="Calculation">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <loginhibit />
+    <display x="120" y="15" />
+    <onsuccess>e9b3568f-3818-4200-bcd9-9261dce0a4c4</onsuccess>
+    <calculation expression="[Data.Emp_SalarySlip]" stage="Attachments.Path" />
+  </stage>
+  <stage stageid="ddbec772-02db-46f9-a79c-b73a8fedab17" name="Data" type="Collection">
+    <subsheetid>452f0aa6-4f04-42d2-902b-ad0d623ba6e1</subsheetid>
+    <display x="330" y="15" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="Emp_Name" type="text" />
+      <field name="Emp_EmailID" type="text" />
+      <field name="Emp_SalarySlip" type="text" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="Emp_Name" type="text" value="" />
+        <field name="Emp_EmailID" type="text" value="" />
+        <field name="Emp_SalarySlip" type="text" value="" />
+      </row>
+    </initialvalue>
+  </stage>
+  <stage stageid="718a0cc1-0af6-4c20-827f-02af278be29c" name="Email Sending Bot" type="SubSheetInfo">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <display x="-195" y="-105" w="150" h="90" />
+  </stage>
+  <stage stageid="030e9b16-09b9-419c-9a26-9648223b86a2" name="Start" type="Start">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <loginhibit />
+    <display x="-15" y="-150" />
+  </stage>
+  <stage stageid="5cd5f7df-7967-4dd8-b4dd-19f5c352fc41" name="End" type="End">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <loginhibit />
+    <display x="0" y="75" />
+  </stage>
+  <stage stageid="9bee2b74-9031-4c64-a19a-77189164ecbc" name="Email" type="Data">
+    <loginhibit />
+    <display x="435" y="-195" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <exposure>Environment</exposure>
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="137c1fc5-81dd-4fbd-9858-0cd7731229af" name="Generate HTML Body" type="Code">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <loginhibit />
+    <display x="-15" y="-60" />
+    <inputs>
+      <input type="collection" name="inputData" expr="[InputCollection]" />
+    </inputs>
+    <outputs>
+      <output type="text" name="OutEmailBody" stage="OutEmailBody" />
+    </outputs>
+    <code><![CDATA[StringBuilder ab = new StringBuilder();
+if(inputData.Rows.Count > 0)
+{
+   ab.Append("Hi Viewer, <br><b>");
+   ab.Append("Please find the below mentioned employee details, <br><br>");
+
+   ab.Append("<tables>");
+   ab.Append("<tr>");
+   foreach(DataColumn dc in inputData.Columns)
+{
+   ab.Append("<th>");
+   ab.Append(dc.ColumnName);
+   ab.Append("</th>");
+}
+   ab.Append("</tr>");
+
+  foreach(DataRow dr in inputData.Rows);
+{
+    ab.Append("<tr>");
+    foreach(DataColumn dc in inputData.Columns)
+{
+    ab.Append("<td>");
+    ab.Append(dr)[dc.ColumnName].ToString());
+    ab.Append("</td>");
+}
+    ab.Append("</tr>");
+}
+    ab.Append("</table><br><br>");
+    ab.Append("Regards,<br>Team ABC");
+}   
+outEmailBody = ab.ToString();]]></code>
+  </stage>
+  <stage stageid="17fffe49-b9be-481f-8ef1-4593ddba2450" name="InputCollection" type="Collection">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <loginhibit />
+    <display x="210" y="-150" />
+    <datatype>collection</datatype>
+    <private />
+    <alwaysinit />
+    <collectioninfo>
+      <field name="ID" type="number" />
+      <field name="Name" type="text" />
+      <field name="Age" type="number" />
+    </collectioninfo>
+    <initialvalue>
+      <row>
+        <field name="ID" type="number" value="1" />
+        <field name="Name" type="text" value="Test" />
+        <field name="Age" type="number" value="25" />
+      </row>
+      <row>
+        <field name="ID" type="number" value="2" />
+        <field name="Name" type="text" value="Rest" />
+        <field name="Age" type="number" value="26" />
+      </row>
+      <row>
+        <field name="ID" type="number" value="3" />
+        <field name="Name" type="text" value="Best" />
+        <field name="Age" type="number" value="30" />
+      </row>
+    </initialvalue>
+  </stage>
+  <stage stageid="708c67b7-8a26-43fa-ae52-f22e25cfa290" name="OutEmailBody" type="Data">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <display x="210" y="-90" />
+    <datatype>text</datatype>
+    <initialvalue />
+    <private />
+    <alwaysinit />
+  </stage>
+  <stage stageid="cad5ccd3-604a-4e03-b46e-276fc23e61f5" name="Action1" type="Action">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <loginhibit />
+    <display x="-180" y="-15" />
+    <resource object="" action="" />
+  </stage>
+  <stage stageid="c5f7b990-d639-47c6-af10-99a5af693bd2" name="Action2" type="Action">
+    <subsheetid>5a55a547-8e3b-4cac-9652-0c93cd6a19d3</subsheetid>
+    <loginhibit />
+    <display x="-180" y="45" />
+    <resource object="" action="" />
+  </stage>
+</process>
